@@ -103,10 +103,6 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
       }
    ]
 
-   // console.log(`Fetching travel style data: ${tripsByTravelStyle}`)
-   console.log("Fetching travel style data: ", tripsByTravelStyle)
-   console.log("Fetching user growth data: ", userGrowth)
-
    return (
       <main className="dashboard wrapper">
          <Header

@@ -71,7 +71,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
          .generateContent([prompt]);
 
       const trip = parseMarkdownToJson(textResult.response.text());
-      // console.log(trip)
 
       const imageResponse = await fetch(
          `https://api.unsplash.com/search/photos?query=${country} ${interests} ${travelStyle}&client_id=${unsplashApiKey}`
@@ -80,7 +79,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       const imageUrls = (await imageResponse.json()).results
          .slice(0, 3)
          .map((result: any) => result.urls?.regular || null);
-      // console.log(imageUrls)
       const result = await database.createDocument(
          appwriteConfig.databaseId,
          appwriteConfig.tripCollectionId,
@@ -92,7 +90,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             userId,
          }
       );
-      // console.log(result)
 
       return data({ id: result.$id });
    } catch (e) {
