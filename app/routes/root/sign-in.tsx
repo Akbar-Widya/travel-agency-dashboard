@@ -50,6 +50,7 @@ const SignIn = () => {
             />
             <span className="p-18-semibold text-white">Sign in with Google</span>
           </ButtonComponent>
+          <h3 className="text-sm text-red-100">*For demonstration purposes, any new sign-up is granted admin access by default.</h3>
         </div>
       </section>
     </main>

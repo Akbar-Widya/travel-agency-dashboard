@@ -9,17 +9,18 @@ const PageLayout = () => {
       navigate("/sign-in");
    };
    return (
-      <div className="p-40-semibold">
-         <button onClick={handleLogout} className="cursor-pointer">
+      <div className="p-40-semibold flex gap-4 items-center justify-center h-screen max-sm:flex-col">
+         <button onClick={handleLogout} className="cursor-pointer flex items-center">
             <img
                src={"/assets/icons/logout.svg"}
                alt="logout"
                className="size-6"
             />
+            <p>Logout</p>
          </button>
-
-         <button onClick={() => {navigate('/dashboard')}}>
-            Dashboard
+         <span>|</span>
+         <button onClick={() => {navigate('/dashboard')}} className=" btn-class bg-primary-100 text-white p-4 rounded-lg cursor-pointer">
+            Go to Dashboard
          </button>
       </div>
    );
