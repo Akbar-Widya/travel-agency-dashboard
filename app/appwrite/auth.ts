@@ -21,6 +21,16 @@ export const storeUserData = async () => {
       const user = await account.get();
       if (!user) throw new Error("User not found");
 
+      const existingDocs = await database.listDocuments(
+         appwriteConfig.databaseId,
+         appwriteConfig.userCollectionId,
+         [Query.equal("accountId", user.$id)]
+      );
+
+      if (existingDocs.total > 0) {
+         return existingDocs.documents[0];
+      }
+
       const { providerAccessToken } =
          (await account.getSession("current")) || {};
       const profilePicture = providerAccessToken
@@ -67,7 +77,7 @@ export const loginWithGoogle = async () => {
    try {
       account.createOAuth2Session(
          OAuthProvider.Google,
-         `${window.location.origin}/`,
+         `${window.location.origin}/sign-in`,
          `${window.location.origin}/404`
       );
    } catch (error) {

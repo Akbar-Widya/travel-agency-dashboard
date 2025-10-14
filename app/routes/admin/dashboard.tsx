@@ -29,7 +29,11 @@ import {
    Tooltip,
 } from "@syncfusion/ej2-react-charts";
 import { dataLabelRendering } from "@syncfusion/ej2-react-maps";
-import { ColumnDirective, ColumnsDirective, GridComponent } from "@syncfusion/ej2-react-grids";
+import {
+   ColumnDirective,
+   ColumnsDirective,
+   GridComponent,
+} from "@syncfusion/ej2-react-grids";
 const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
    dashboardStats;
 
@@ -86,22 +90,22 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
       imageUrl: trip.imageUrls[0],
       name: trip.name,
       interest: trip.interests,
-   }))
+   }));
 
    const usersAndTrips = [
       {
-         title: 'Latest user signups',
+         title: "Latest user signups",
          dataSource: allUsers,
-         field: 'count',
-         headerText: 'Trips created'
+         field: "count",
+         headerText: "Trips created",
       },
       {
-         title: 'Trips based on interests',
+         title: "Trips based on interests",
          dataSource: trips,
-         field: 'interest',
-         headerText: 'Interests'
-      }
-   ]
+         field: "interest",
+         headerText: "Interests",
+      },
+   ];
 
    return (
       <main className="dashboard wrapper">
@@ -111,40 +115,42 @@ const Dashboard = ({ loaderData }: Route.ComponentProps) => {
          />
 
          <section className="user-trip wrapper">
-            {usersAndTrips.map(({ title, dataSource, field, headerText }, i) => (
-               <div key={i} className="flex flex-col gap-5">
-                  <h3 className="p-20-semibold text-dark-100">{title}</h3>
+            {usersAndTrips.map(
+               ({ title, dataSource, field, headerText }, i) => (
+                  <div key={i} className="flex flex-col gap-5">
+                     <h3 className="p-20-semibold text-dark-100">{title}</h3>
 
-                           <GridComponent dataSource={dataSource} gridLines="None">
-                              <ColumnsDirective>
-                                 <ColumnDirective
-                                    field="name"
-                                    headerText="Name"
-                                    width={200}
-                                    textAlign="Left"
-                                    template={(props: UserData) => (
-                                       <div className="flex items-center gap-1.5 px-4">
-                                          <img
-                                             src={props.imageUrl}
-                                             alt="user"
-                                             className="rounded-full size-8 aspect-square"
-                                             referrerPolicy="no-referrer"
-                                          />
-                                          <span>{props.name}</span>
-                                       </div>
-                                    )}
-                                 />
+                     <GridComponent dataSource={dataSource} gridLines="None">
+                        <ColumnsDirective>
+                           <ColumnDirective
+                              field="name"
+                              headerText="Name"
+                              width={200}
+                              textAlign="Left"
+                              template={(props: UserData) => (
+                                 <div className="flex items-center gap-1.5 px-4">
+                                    <img
+                                       src={props.imageUrl}
+                                       alt="user"
+                                       className="rounded-full size-8 aspect-square"
+                                       referrerPolicy="no-referrer"
+                                    />
+                                    <span>{props.name}</span>
+                                 </div>
+                              )}
+                           />
 
-                                 <ColumnDirective
-                                    field={field}
-                                    headerText={headerText}
-                                    width="150"
-                                    textAlign="Left"
-                                 />
-                              </ColumnsDirective>
-                           </GridComponent>
-               </div>
-            ))}
+                           <ColumnDirective
+                              field={field}
+                              headerText={headerText}
+                              width="150"
+                              textAlign="Left"
+                           />
+                        </ColumnsDirective>
+                     </GridComponent>
+                  </div>
+               )
+            )}
          </section>
 
          <section className="flex flex-col gap-6">
